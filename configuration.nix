@@ -19,6 +19,14 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
+  programs.niri.enable = true;
+
+  services.xserver.xkb = {
+    layout = "us";
+    options = "ctrl:nocaps";
+  };
+
+  console.useXkbConfig = true;
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 
@@ -74,6 +82,9 @@
   environment.systemPackages = with pkgs; [
     helix
     git
+    firefox
+    ghostty
+    fuzzel
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
