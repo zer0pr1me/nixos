@@ -22,8 +22,8 @@
   programs.niri.enable = true;
 
   services.xserver.xkb = {
-    layout = "us";
-    options = "ctrl:nocaps";
+    layout = "us,ua";
+    options = "ctrl:nocaps, grp:shifts_toggle";
   };
 
   console.useXkbConfig = true;
@@ -58,10 +58,10 @@
   # Enable sound.
   # services.pulseaudio.enable = true;
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -77,14 +77,23 @@
 
   # programs.firefox.enable = true;
 
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  hardware.graphics = {
+    enable = true;
+  };
+
+  services.xserver.videoDrivers = [ "amdgpu" ];
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     helix
     git
     firefox
     ghostty
     fuzzel
+
+    obsidian
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
