@@ -75,18 +75,25 @@
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
        tree
+       
        helix
+       nixd
+       nixpkgs-fmt
+       pyright
+       ruff
+       
        git
        firefox
        ghostty
        fuzzel
-       telegram
+       telegram-desktop
 
        python3
        uv
 
        obsidian
      ];
+
    };
 
   # programs.firefox.enable = true;
