@@ -14,12 +14,22 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # networking.hostName = "nixos"; # Define your hostname.
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
   programs.niri.enable = true;
+  programs.niri.settings = {
+    environment = {
+    "DISPLAY" = ":0";
+    };
+    spawn-at-startup = [
+      { command = [ "xwayland" "-satellite" ]; }
+    ];
+  };
+  programs.xwayland.enable = true;
 
   services.xserver.xkb = {
     layout = "us,ua";
@@ -116,6 +126,13 @@
 
     obsidian
   ];
+
+   programs.steam = {
+     enable = true;
+     remotePlay.openFirewall = true;
+     dedicatedServer.openFirewall = true;
+     localNetworkGameTransfers.openFirewall = true;
+   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
