@@ -1,25 +1,33 @@
 {
-  description = "NixOS Flake Configuration";
+  description = "Universal Multi-Host NixOS Configuration";
 
   inputs = {
-    # Використовуємо стабільну гілку NixOS (наприклад, nixos-unstable або вашу версію)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # Необов'язково: офіційний модуль niri
     niri.url = "github:sodiboo/niri-flake";
   };
 
-  outputs = { self, nixpkgs, niri, ... }@inputs: {
+  outputs = { self, nixpkgs, niri, ... }: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      
+      vivobook = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hardware-configuration.nix
-          ./configuration.nix
-          
+          ./modules/common.nix
+          ./hosts/vivobook/config.nix
+          ./hosts/vivobook/hardware.nix
           niri.nixosModules.niri
         ];
       };
+
+      cc = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./modules/common.nix
+          ./hosts/cc/config.nix
+          ./hosts/cc/hardware.nix
+        ];
+      };
+
     };
   };
 }
