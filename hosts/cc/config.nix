@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./modules/syncthing.nix
+    ../../modules/syncthing.nix
   ];
   networking.hostName = "zeroprime-cc";
 
