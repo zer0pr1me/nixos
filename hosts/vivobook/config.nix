@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  networking.hostName = "nixos";
+  imports = [ ../../modules/syncthing.nix ]; 
+  networking.hostName = "vivobook-s";
 
   # EFI Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -55,37 +56,9 @@
 
   # Syncthing setup for Laptop
   services.syncthing = {
-    enable = true;
     user = "alice";
-    openDefaultPorts = true;
     dataDir = "/home/alice";
     configDir = "/home/alice/.config/syncthing";
-    overrideDevices = true;
-    overrideFolders = true;
-
-    settings = {
-      options = {
-        listenAddresses = [
-          "tcp://0.0.0.0:22001"
-          "quic://0.0.0.0:22001"
-        ];
-      };
-      devices = {
-        "cc" = {
-          id = "SQWPYRX-RP5PZVD-4XNLBZJ-MPYFAKO-YRTB226-FVSZVNO-UYJWNKS-ATFDIQS";
-          addresses = [
-            "tcp://192.168.8.42:22000"
-            "dynamic"
-          ];
-        };
-      };
-      folders = {
-        "prima-materia" = {
-          path = "/home/alice/prima-materia";
-          devices = [ "cc" ];
-        };
-      };
-    };
   };
 
   networking.firewall.allowedTCPPorts = [ 22001 ];

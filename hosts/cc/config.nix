@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./modules/syncthing.nix
+  ];
   networking.hostName = "zeroprime-cc";
 
   # Raspberry Pi Bootloader
@@ -25,27 +28,9 @@
 
   # Syncthing setup for Pi
   services.syncthing = {
-    enable = true;
     user = "bob";
-    openDefaultPorts = true;
     dataDir = "/home/bob";
     configDir = "/home/bob/.config/syncthing";
-    overrideDevices = true;
-    overrideFolders = true;
-
-    settings = {
-      devices = {
-        "vivobook-s" = {
-          id = "77OLQKP-HSJUUYE-GXPLZA5-P4C2VR4-H23XWCX-HJ2FUGJ-UTHBJNC-IWPDEAI";
-        };
-      };
-      folders = {
-        "prima-materia" = {
-          path = "/home/bob/prima-materia";
-          devices = [ "vivobook-s" ];
-        };
-      };
-    };
   };
 
   system.stateVersion = "25.11";
