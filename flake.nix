@@ -4,9 +4,14 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     niri.url = "github:sodiboo/niri-flake";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, niri, ... }: {
+  outputs = { self, nixpkgs, home-manager, niri, ... }: {
     nixosConfigurations = {
       
       vivobook = nixpkgs.lib.nixosSystem {
@@ -28,6 +33,18 @@
         ];
       };
 
+    };
+
+    homeConfigurations = {
+      "latitude" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./hosts/latitude/config.nix
+          {
+            targets.genericLinux.enable = true;
+          }
+        ];
+      };
     };
   };
 }

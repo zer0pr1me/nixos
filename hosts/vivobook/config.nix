@@ -61,8 +61,5 @@
     configDir = "/home/alice/.config/syncthing";
   };
 
-  networking.firewall.allowedTCPPorts = [ 22001 ];
-  networking.firewall.allowedUDPPorts = [ 22001 ];
-
   system.stateVersion = "26.05";
 }
