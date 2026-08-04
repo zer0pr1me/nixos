@@ -38,20 +38,6 @@
   users.users.alice = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    packages = with pkgs; [
-      tree
-      nixd
-      nixpkgs-fmt
-      pyright
-      ruff
-      firefox
-      ghostty
-      fuzzel
-      telegram-desktop
-      python3
-      uv
-      obsidian
-    ];
   };
 
   # Syncthing setup for Laptop

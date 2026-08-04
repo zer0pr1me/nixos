@@ -21,6 +21,14 @@
           ./hosts/vivobook/config.nix
           ./hosts/vivobook/hardware.nix
           niri.nixosModules.niri
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.users.alice = import ./users/alice.nix;
+          }
         ];
       };
 
