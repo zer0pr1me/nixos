@@ -55,15 +55,11 @@
         extraSpecialArgs = { inherit nixgl; };
         modules = [
           niri.homeModules.niri
+          ./hosts/latitude/config.nix
           ./users/bohdan.nix
           {
-            programs.niri.enable = true;
             targets.genericLinux.enable = true;
             home.packages = [ nixgl.packages.x86_64-linux.nixGLIntel ]; # or nixGLNvidia / nixVulkan
-
-            home.shellAliases = {
-              ghostty = "nixGLIntel ghostty";
-            };
           }
         ];
       };
