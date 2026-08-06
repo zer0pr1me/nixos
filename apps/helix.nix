@@ -1,6 +1,9 @@
-# modules/apps/helix.nix
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
+let
+  utils = import ../lib/utils.nix { inherit lib; };
+  userHome = config.home.homeDirectory;
+in
 {
   programs.helix = {
     enable = true;
@@ -42,5 +45,10 @@
         }
       ];
     };
+  };
+
+  home.activation.linkHelix = utils.mkNonNixosSymlink {
+    sourcePath = "${userHome}/.nix-profile/bin/hx";
+    targetPath = "/usr/local/bin/hx";
   };
 }

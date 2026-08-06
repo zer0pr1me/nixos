@@ -22,6 +22,8 @@ in
       };
     };
   };
+
+  # TODO: copy or symlink `~/.local/share/wayland-sessions/niri.desktop` to `/usr/share/wayland-sessions`
   xdg.dataFile."wayland-sessions/niri.desktop".text = ''
     [Desktop Entry]
     Name=Niri

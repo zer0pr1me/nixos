@@ -1,5 +1,9 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
+let
+  utils = import ../lib/utils.nix { inherit lib; };
+  userHome = config.home.homeDirectory;
+in
 {
   programs.waybar = {
     enable = true;
@@ -114,5 +118,10 @@
       "Mod+Shift+F".action = fullscreen-window;
       "Mod+C".action = center-column;
     };
+  };
+
+  home.activation.linkNiriDesktop = utils.mkNonNixosSymlink {
+    sourcePath = "${userHome}/.local/share/wayland-sessions/niri.desktop";
+    targetPath = "/usr/share/wayland-sessions/niri.desktop";
   };
 }
