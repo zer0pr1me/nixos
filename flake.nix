@@ -9,9 +9,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, home-manager, niri, ... }: {
+  outputs = { self, nixpkgs, home-manager, niri, nixgl, ... }: {
     nixosConfigurations = {
       
       vivobook = nixpkgs.lib.nixosSystem {
@@ -46,10 +52,18 @@
     homeConfigurations = {
       "latitude" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = { inherit nixgl; };
         modules = [
-          ./hosts/latitude/config.nix
+          niri.homeModules.niri
+          ./users/bohdan.nix
           {
+            programs.niri.enable = true;
             targets.genericLinux.enable = true;
+            home.packages = [ nixgl.packages.x86_64-linux.nixGLIntel ]; # or nixGLNvidia / nixVulkan
+
+            home.shellAliases = {
+              ghostty = "nixGLIntel ghostty";
+            };
           }
         ];
       };
