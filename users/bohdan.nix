@@ -3,6 +3,7 @@
 {
   imports = [
     ../apps/niri.nix
+    ../apps/helix.nix
   ];
   home.username = "bohdan";
   home.homeDirectory = "/home/bohdan";
