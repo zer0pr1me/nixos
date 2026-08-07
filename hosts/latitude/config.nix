@@ -1,4 +1,10 @@
-{ pkgs, config, nixgl, lib, ... }:
+{
+  pkgs,
+  config,
+  nixgl,
+  lib,
+  ...
+}:
 
 let
   nixGLPkg = nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLIntel;
@@ -7,6 +13,9 @@ let
   userHome = config.home.homeDirectory;
 in
 {
+  imports = [
+    ../../apps/syncthing.nix
+  ];
   xdg.portal = {
     enable = true;
     extraPortals = [
@@ -18,7 +27,10 @@ in
         default = [ "gtk" ];
       };
       niri = {
-        default = [ "gnome" "gtk" ];
+        default = [
+          "gnome"
+          "gtk"
+        ];
       };
     };
   };
@@ -42,16 +54,22 @@ in
   systemd.user.startServices = "sd-switch";
 
   # Point systemd user manager to Home Manager unit paths
-  xdg.configFile."systemd/user/niri.service".source =
-    "${pkgs.niri}/share/systemd/user/niri.service";
+  xdg.configFile."systemd/user/niri.service".source = "${pkgs.niri}/share/systemd/user/niri.service";
   xdg.configFile."systemd/user/niri-shutdown.target".source =
     "${pkgs.niri}/share/systemd/user/niri-shutdown.target";
 
   programs.niri.settings = {
     spawn-at-startup = [
       # Notify DBus & Systemd of the Wayland session variables
-      { command = [ "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE" ]; }
+      {
+        command = [
+          "dbus-update-activation-environment"
+          "--systemd"
+          "WAYLAND_DISPLAY"
+          "XDG_CURRENT_DESKTOP"
+          "XDG_SESSION_TYPE"
+        ];
+      }
     ];
   };
 }
-

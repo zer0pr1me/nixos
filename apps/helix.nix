@@ -11,6 +11,20 @@ in
     # Package selection (defaults to pkgs.helix)
     package = pkgs.helix;
 
+    extraPackages = with pkgs; [
+      # Nix
+      nil                  # Feature-rich Language Server for Nix
+      nixfmt-rfc-style     # Standard Nix formatter
+
+      # Python
+      pyright              # Fast type checking & autocompletion
+      ruff                 # Blazing fast Python linter and formatter
+
+      # Markdown
+      marksman             # Markdown LSP (links, references, heading navigation)
+      markdownlint-cli     # Markdown linter for syntax & structure formatting
+    ];
+
     # Settings exported directly into ~/.config/helix/config.toml
     settings = {
       editor = {
@@ -20,11 +34,13 @@ in
         lsp = {
           display-messages = true;
         };
+        auto-format = true;
       };
 
       keys.insert = {
         "C-[" = "normal_mode";
       };
+      
     };
 
     languages = {
