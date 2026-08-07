@@ -1,5 +1,6 @@
 {
   lib,
+  currentHost,
   ...
 }:
 
@@ -48,14 +49,14 @@ in
     # Declarative Mesh Configuration
     settings = {
       # Filter out 'latitude' so it doesn't try to connect to itself
-      devices = lib.filterAttrs (name: _: name != "latitude") devices;
+      devices = lib.filterAttrs (name: _: name != currentHost) devices;
 
       # Filter out 'latitude' from target devices list for each folder
       folders = builtins.mapAttrs (
         name: folder:
         folder
         // {
-          devices = builtins.filter (dev: dev != "latitude") folder.devices;
+          devices = builtins.filter (dev: dev != currentHost) folder.devices;
         }
       ) folders;
 

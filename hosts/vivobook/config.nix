@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../../modules/syncthing.nix ]; 
-  networking.hostName = "vivobook-s";
+  imports = [ ../../modules/syncthing.nix ];
+  networking.hostName = "vivobook";
 
   # EFI Bootloader
   boot.loader.systemd-boot.enable = true;
