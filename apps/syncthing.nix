@@ -9,7 +9,7 @@ let
   userHome = config.home.homeDirectory;
   devices = {
     vivobook = {
-      id = "77OLQKP-HSJUUYE-GXPLZA5-P4C2VR4-H23XWCX-HJ2FUGJ-UTHBJNC-IWPDEAI";
+      id = "57JL6KW-HJYHTHA-WBMUTIB-MJIKY2J-D755FGW-TMTOK7E-GJ6J4NR-MHFPKAF";
       addresses = [
         "tcp://192.168.8.43:22000"
         "dynamic"
@@ -58,10 +58,8 @@ in
 
     # Declarative Mesh Configuration
     settings = {
-      # Filter out 'latitude' so it doesn't try to connect to itself
       devices = lib.filterAttrs (name: _: name != currentHost) devices;
 
-      # Filter out 'latitude' from target devices list for each folder
       folders = builtins.mapAttrs (
         name: folder:
         folder
