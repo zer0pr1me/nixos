@@ -16,7 +16,7 @@ let
       ];
     };
     zeroprime-cc = {
-      id = "IPPQAVG-BGHOIRU-HQICO65-MITXFVH-J4WIMBC-WETYGZT-FVCMEHA-QCJPVQ";
+      id = "IPPQAVG-BGHOIRU-HQICO65-MITXFVH-J4WIMBC-WETYGZT-FVCMEHA-QCJPVQF";
       addresses = [
         "tcp://192.168.8.42:22000"
         "dynamic"
