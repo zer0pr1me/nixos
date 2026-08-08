@@ -1,10 +1,12 @@
 {
   lib,
+  config,
   currentHost,
   ...
 }:
 
 let
+  userHome = config.home.homeDirectory;
   devices = {
     vivobook = {
       id = "77OLQKP-HSJUUYE-GXPLZA5-P4C2VR4-H23XWCX-HJ2FUGJ-UTHBJNC-IWPDEAI";
@@ -30,7 +32,7 @@ let
   };
   folders = {
     "books" = {
-      path = "~/sync/books";
+      path = "${userHome}/sync/books";
       devices = [
         "cc"
         "vivobook"
@@ -38,7 +40,7 @@ let
       ];
     };
     "codex" = {
-      path = "~/sync/codex";
+      path = "${userHome}/sync/codex";
       devices = [
         "cc"
         "vivobook"
@@ -69,8 +71,8 @@ in
       ) folders;
 
       # Keep unmanaged web GUI edits from being overwritten instantly if desired
-      # overrideDevices = true;
-      # overrideFolders = true;
+      overrideDevices = true;
+      overrideFolders = true;
     };
   };
 }
