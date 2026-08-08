@@ -67,10 +67,8 @@ in
           devices = builtins.filter (dev: dev != currentHost) folder.devices;
         }
       ) folders;
-
-      # Keep unmanaged web GUI edits from being overwritten instantly if desired
-      overrideDevices = true;
-      overrideFolders = true;
     };
+    overrideDevices = true;
+    overrideFolders = true;
   };
 }
