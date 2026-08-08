@@ -7,7 +7,7 @@
 let
   devices = {
     vivobook = {
-      id = "SEIDWN6-DEWGYIU-FYPNVSO-HIPLFDN-OOTKAIB-WSVEOOG-4EOQIP4-2PINVQ";
+      id = "77OLQKP-HSJUUYE-GXPLZA5-P4C2VR4-H23XWCX-HJ2FUGJ-UTHBJNC-IWPDEAI";
       addresses = [
         "tcp://192.168.8.43:22000"
         "dynamic"
