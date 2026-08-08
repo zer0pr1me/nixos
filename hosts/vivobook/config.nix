@@ -1,8 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, currentHost, ... }:
 
 {
-  imports = [ ../../modules/syncthing.nix ];
-  networking.hostName = "vivobook";
+  networking.hostName = currentHost;
 
   # EFI Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -38,13 +37,7 @@
   users.users.alice = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-  };
-
-  # Syncthing setup for Laptop
-  services.syncthing = {
-    user = "alice";
-    dataDir = "/home/alice";
-    configDir = "/home/alice/.config/syncthing";
+    linger = true;
   };
 
   system.stateVersion = "26.05";

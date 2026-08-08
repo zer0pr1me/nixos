@@ -6,8 +6,8 @@
 
 let
   devices = {
-    vivobook-s = {
-      id = "77OLQKP-HSJUUYE-GXPLZA5-P4C2VR4-H23XWCX-HJ2FUGJ-UTHBJNC-IWPDEAI";
+    vivobook = {
+      id = "SEIDWN6-DEWGYIU-FYPNVSO-HIPLFDN-OOTKAIB-WSVEOOG-4EOQIP4-2PINVQ";
       addresses = [
         "tcp://192.168.8.43:22000"
         "dynamic"
@@ -29,11 +29,19 @@ let
     };
   };
   folders = {
-    "prima-materia" = {
-      path = "/home/bohdan/sync/prima-materia";
+    "books" = {
+      path = "~/sync/books";
       devices = [
         "cc"
-        "vivobook-s"
+        "vivobook"
+        "latitude"
+      ];
+    };
+    "codex" = {
+      path = "~/sync/codex";
+      devices = [
+        "cc"
+        "vivobook"
         "latitude"
       ];
     };

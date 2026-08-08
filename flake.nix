@@ -45,7 +45,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
-              home-manager.users.alice = import ./users/alice.nix;
+
+              home-manager.extraSpecialArgs = {
+                currentHost = "vivobook";
+              };
+              home-manager.users.alice = ./users/alice.nix;
             }
           ];
         };
