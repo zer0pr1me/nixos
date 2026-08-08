@@ -5,8 +5,8 @@
     ../apps/helix.nix
     ../apps/syncthing.nix
   ];
-  home.username = "alice";
-  home.homeDirectory = "/home/alice";
+  home.username = "bob";
+  home.homeDirectory = "/home/bob";
 
   home.packages = with pkgs; [
   ];

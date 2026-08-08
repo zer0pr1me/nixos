@@ -16,7 +16,7 @@ let
       ];
     };
     zeroprime-cc = {
-      id = "SQWPYRX-RP5PZVD-4XNLBZJ-MPYFAKO-YRTB226-FVSZVNO-UYJWNKS-ATFDIQS";
+      id = "IPPQAVG-BGHOIRU-HQICO65-MITXFVH-J4WIMBC-WETYGZT-FVCMEHA-QCJPVQ";
       addresses = [
         "tcp://192.168.8.42:22000"
         "dynamic"

@@ -73,7 +73,7 @@
               home-manager.extraSpecialArgs = {
                 currentHost = "zeroprime-cc";
               };
-              home-manager.users.alice = ./users/bob.nix;
+              home-manager.users.bob = ./users/bob.nix;
             }
           ];
         };
