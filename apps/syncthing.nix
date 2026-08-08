@@ -15,7 +15,7 @@ let
         "dynamic"
       ];
     };
-    cc = {
+    zeroprime-cc = {
       id = "SQWPYRX-RP5PZVD-4XNLBZJ-MPYFAKO-YRTB226-FVSZVNO-UYJWNKS-ATFDIQS";
       addresses = [
         "tcp://192.168.8.42:22000"
@@ -34,7 +34,7 @@ let
     "books" = {
       path = "${userHome}/sync/books";
       devices = [
-        "cc"
+        "zeroprime-cc"
         "vivobook"
         "latitude"
       ];
@@ -42,7 +42,7 @@ let
     "codex" = {
       path = "${userHome}/sync/codex";
       devices = [
-        "cc"
+        "zeroprime-cc"
         "vivobook"
         "latitude"
       ];

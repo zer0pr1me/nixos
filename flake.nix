@@ -54,15 +54,27 @@
           ];
         };
 
-        cc = nixpkgs.lib.nixosSystem {
+        zeroprime-cc = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           specialArgs = {
-            currentHost = "cc";
+            currentHost = "zeroprime-cc";
           };
           modules = [
             ./modules/common.nix
             ./hosts/cc/config.nix
             ./hosts/cc/hardware.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+
+              home-manager.extraSpecialArgs = {
+                currentHost = "zeroprime-cc";
+              };
+              home-manager.users.alice = ./users/bob.nix;
+            }
           ];
         };
 

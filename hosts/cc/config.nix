@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ../../modules/syncthing.nix
-  ];
   networking.hostName = "zeroprime-cc";
 
   # Raspberry Pi Bootloader
@@ -14,7 +11,7 @@
   users.users.bob = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    packages = with pkgs; [];
+    linger = true;
   };
 
   # SSH Service
@@ -24,13 +21,6 @@
       PasswordAuthentication = false;
       PermitRootLogin = "prohibit-password";
     };
-  };
-
-  # Syncthing setup for Pi
-  services.syncthing = {
-    user = "bob";
-    dataDir = "/home/bob";
-    configDir = "/home/bob/.config/syncthing";
   };
 
   system.stateVersion = "25.11";
