@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../apps/nemo.nix
     ../apps/niri.nix
     ../apps/helix.nix
     ../apps/syncthing.nix
@@ -12,9 +13,6 @@
   home.packages = with pkgs; [
     tree
     nixd
-    nixpkgs-fmt
-    pyright
-    ruff
     firefox
     ghostty
     fuzzel

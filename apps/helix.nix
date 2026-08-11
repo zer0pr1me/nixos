@@ -39,6 +39,40 @@ in
 
       keys.insert = {
         "C-[" = "normal_mode";
+
+        # Ukrainian layout:
+        "C-х" = "normal_mode";
+      };
+
+      keys.normal = {
+        # Ukrainian layout:
+        # Navigation (h, j, k, l)
+        "р" = "move_char_left";
+        "о" = "move_visual_line_down";
+        "л" = "move_visual_line_up";
+        "д" = "move_char_right";
+
+        # Word movement (w, b, e)
+        "ц" = "move_next_word_start";
+        "и" = "move_prev_word_start";
+        "у" = "move_next_word_end";
+
+        # Mode switches (i, a, o, O)
+        "ш" = "insert_mode";
+        "ф" = "append_mode";
+        "щ" = "open_below";
+        "Щ" = "open_above";
+
+        # Basic editing (d, c, y, p, u)
+        "в" = "delete_selection";
+        "с" = "change_selection";
+        "н" = "yank";
+        "з" = "paste_after";
+        "г" = "undo";
+        "Г" = "redo";
+
+        # Selection/visual (x)
+        "ч" = "extend_line_below";
       };
       
     };
@@ -53,6 +87,7 @@ in
         {
           name = "python";
           formatter = { command = "ruff"; args = [ "format" "--------" "-" ]; };
+          language-servers = [ "pyright" "ruff" ];
           auto-format = true;
         }
         {
