@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   utils = import ../lib/utils.nix { inherit lib; };
@@ -13,16 +18,20 @@ in
 
     extraPackages = with pkgs; [
       # Nix
-      nil                  # Feature-rich Language Server for Nix
-      nixfmt-rfc-style     # Standard Nix formatter
+      nil # Feature-rich Language Server for Nix
+      nixfmt-rfc-style # Standard Nix formatter
 
       # Python
-      pyright              # Fast type checking & autocompletion
-      ruff                 # Blazing fast Python linter and formatter
+      pyright # Fast type checking & autocompletion
+      ruff # Blazing fast Python linter and formatter
 
       # Markdown
-      marksman             # Markdown LSP (links, references, heading navigation)
-      markdownlint-cli     # Markdown linter for syntax & structure formatting
+      marksman # Markdown LSP (links, references, heading navigation)
+      markdownlint-cli # Markdown linter for syntax & structure formatting
+
+      # YAML
+      yaml-language-server
+      ansible-language-server
     ];
 
     # Settings exported directly into ~/.config/helix/config.toml
@@ -74,20 +83,32 @@ in
         # Selection/visual (x)
         "ч" = "extend_line_below";
       };
-      
+
     };
 
     languages = {
       language = [
         {
           name = "nix";
-          formatter = { command = "nixfmt"; };
+          formatter = {
+            command = "nixfmt";
+          };
           auto-format = true;
         }
         {
           name = "python";
-          formatter = { command = "ruff"; args = [ "format" "--------" "-" ]; };
-          language-servers = [ "pyright" "ruff" ];
+          formatter = {
+            command = "ruff";
+            args = [
+              "format"
+              "--------"
+              "-"
+            ];
+          };
+          language-servers = [
+            "pyright"
+            "ruff"
+          ];
           auto-format = true;
         }
         {
