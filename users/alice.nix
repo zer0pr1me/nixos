@@ -10,7 +10,12 @@
   home.username = "alice";
   home.homeDirectory = "/home/alice";
 
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
   home.packages = with pkgs; [
+    discord
+
     tree
     nixd
     firefox
