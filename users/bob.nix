@@ -4,6 +4,7 @@
   imports = [
     ../apps/helix.nix
     ../apps/syncthing.nix
+    ../apps/anamnesis.nix
   ];
   home.username = "bob";
   home.homeDirectory = "/home/bob";

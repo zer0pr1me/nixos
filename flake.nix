@@ -15,6 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    anamnesis = {
+      url = "git+https://codeberg.org/zer0pr1me/anamnesis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -24,6 +28,7 @@
       home-manager,
       niri,
       nixgl,
+      anamnesis,
       ...
     }:
     {
@@ -72,6 +77,7 @@
 
               home-manager.extraSpecialArgs = {
                 currentHost = "zeroprime-cc";
+                inherit anamnesis;
               };
               home-manager.users.bob = ./users/bob.nix;
             }

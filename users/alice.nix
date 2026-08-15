@@ -20,6 +20,7 @@
     python3
     uv
     obsidian
+    usbutils
 
     nerd-fonts.jetbrains-mono
   ];
