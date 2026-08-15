@@ -4,10 +4,10 @@
   programs.git = {
     enable = true;
     
-    userName = "Bohdan Ovsiannikov";
-    userEmail = "zeroprime@mailbox.org";
 
-    extraConfig = {
+    settings = {
+      user.name = "Bohdan Ovsiannikov";
+      user.email = "zeroprime@mailbox.org";
       core.editor = "hx";
     };
   };

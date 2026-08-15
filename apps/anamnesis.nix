@@ -1,7 +1,7 @@
-{ pkgs, anamnesis, ... }:
+{ pkgs, anamnesis, config, ... }:
 
 let
-  # Grab the pre-built package straight from your Flake input
+  homeRoot = config.home.homeDirectory;
   anamnesisPkg = anamnesis.packages.${pkgs.system}.default;
 in
 {
@@ -21,7 +21,7 @@ in
       Restart = "always";
       RestartSec = "10s";
 
-      EnvironmentFile = "/home/alice/.config/anamnesis/env";
+      EnvironmentFile = "${homeRoot}/.config/anamnesis/env";
 
     };
 
