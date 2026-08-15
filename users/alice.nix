@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../apps/git.nix
     ../apps/nemo.nix
     ../apps/niri.nix
     ../apps/helix.nix
@@ -10,7 +11,12 @@
   home.username = "alice";
   home.homeDirectory = "/home/alice";
 
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
   home.packages = with pkgs; [
+    discord
+
     tree
     nixd
     firefox

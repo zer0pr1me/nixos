@@ -2,9 +2,10 @@
 
 {
   imports = [
+    ../apps/anamnesis.nix
+    ../apps/git.nix
     ../apps/helix.nix
     ../apps/syncthing.nix
-    ../apps/anamnesis.nix
   ];
   home.username = "bob";
   home.homeDirectory = "/home/bob";
