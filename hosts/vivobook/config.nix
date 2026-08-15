@@ -1,4 +1,9 @@
-{ config, pkgs, currentHost, ... }:
+{
+  config,
+  pkgs,
+  currentHost,
+  ...
+}:
 
 {
   networking.hostName = currentHost;
@@ -18,6 +23,13 @@
 
   hardware.graphics.enable32Bit = true;
 
+  # In /etc/nixos/configuration.nix
+  security.rtkit.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true; # Backup screencast support for wlroots-compatible compositors
+  };
   # Sound
   services.pipewire = {
     enable = true;

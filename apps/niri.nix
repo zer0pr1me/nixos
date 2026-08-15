@@ -1,15 +1,47 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   utils = import ../lib/utils.nix { inherit lib; };
   userHome = config.home.homeDirectory;
 in
 {
-  home.sessionVariables = {
-    DISPLAY = ":0";
+  home.packages = [ pkgs.xwayland-satellite ];
+
+  # Enable XDG Desktop Portals for Wayland screen sharing
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config = {
+      common = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
+    };
   };
 
-  home.packages = [ pkgs.xwayland-satellite ];
+  home.sessionVariables = {
+    DISPLAY = ":0";
+    # Forces Electron & Chrome apps (Discord) to run natively on Wayland with WebRTC screen sharing enabled
+    NIXOS_OZONE_WL = "1";
+    # Force Qt apps (Telegram) to use Wayland natively
+    QT_QPA_PLATFORM = "wayland;xcb";
+  };
 
   programs.waybar = {
     enable = true;
@@ -20,9 +52,15 @@ in
         position = "top";
         height = 30;
 
-        modules-left = [ "niri/workspaces" "niri/window" ];
+        modules-left = [
+          "niri/workspaces"
+          "niri/window"
+        ];
         modules-center = [ "clock" ];
-        modules-right = [ "battery" "tray" ];
+        modules-right = [
+          "battery"
+          "tray"
+        ];
 
         "clock" = {
           format = "{:%H:%M:%S | %a, %b %d}";
@@ -38,7 +76,19 @@ in
           format = "{capacity}% {icon}";
           format-charging = "{capacity}% 󰂄";
           format-plugged = "{capacity}% ";
-          format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            "󰂎"
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
           tooltip-format = "{timeTo} ({capacity}%)";
         };
 
