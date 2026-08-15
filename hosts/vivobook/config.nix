@@ -16,6 +16,8 @@
   programs.niri.enable = true;
   programs.xwayland.enable = true;
 
+  hardware.graphics.enable32Bit = true;
+
   # Sound
   services.pipewire = {
     enable = true;

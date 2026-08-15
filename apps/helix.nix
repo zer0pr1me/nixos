@@ -20,7 +20,7 @@ in
     extraPackages = with pkgs; [
       # Nix
       nil # Feature-rich Language Server for Nix
-      nixfmt-rfc-style # Standard Nix formatter
+      nixfmt # Standard Nix formatter
 
       # Python
       pyright # Fast type checking & autocompletion

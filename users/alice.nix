@@ -16,6 +16,7 @@
   };
   home.packages = with pkgs; [
     discord
+    lutris
 
     tree
     nixd

@@ -5,6 +5,12 @@ let
   userHome = config.home.homeDirectory;
 in
 {
+  home.sessionVariables = {
+    DISPLAY = ":0";
+  };
+
+  home.packages = [ pkgs.xwayland-satellite ];
+
   programs.waybar = {
     enable = true;
 
@@ -80,6 +86,7 @@ in
 
     spawn-at-startup = [
       { command = [ "${pkgs.waybar}/bin/waybar" ]; }
+      { command = [ "${pkgs.xwayland-satellite}/bin/xwayland-satellite" ]; }
     ];
 
     binds = with config.lib.niri.actions; {
@@ -123,5 +130,21 @@ in
   home.activation.linkNiriDesktop = utils.mkNonNixosSymlink {
     sourcePath = "${userHome}/.local/share/wayland-sessions/niri.desktop";
     targetPath = "/usr/share/wayland-sessions/niri.desktop";
+  };
+
+  systemd.user.services.xwayland-satellite = {
+    Unit = {
+      Description = "Xwayland satellite for Niri";
+      BindsTo = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite :0";
+      ExecStartPost = "${pkgs.systemd}/bin/systemctl --user import-environment DISPLAY";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
   };
 }
