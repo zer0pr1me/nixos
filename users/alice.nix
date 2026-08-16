@@ -29,6 +29,7 @@
     nodejs
     obsidian
     usbutils
+    libreoffice
 
     pulsemixer
 
