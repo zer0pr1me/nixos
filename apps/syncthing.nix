@@ -47,6 +47,14 @@ let
         "latitude"
       ];
     };
+    "archive" = {
+      path = "${userHome}/sync/archive";
+      devices = [
+        "zeroprime-cc"
+        "vivobook"
+        "latitude"
+      ];
+    };
   };
 in
 {
