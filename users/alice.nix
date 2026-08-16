@@ -26,8 +26,11 @@
     telegram-desktop
     python3
     uv
+    nodejs
     obsidian
     usbutils
+
+    pulsemixer
 
     nerd-fonts.jetbrains-mono
   ];
